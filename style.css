@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background-color: #FFF1D6;
+  min-height: 100vh;
+}
+
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#game-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+#player-pizza .topping-position {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 2px dashed brown;
+    margin: 10px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+
+
+
+

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Memory</title>
-    <script src="./app.js"></script>
+    <script src="./app.js" defer></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body> 
@@ -14,6 +14,63 @@
   <p>Remember the toppings. Build your pizza. Win!</p>
   <button id="play-btn">Play</button>
 </main>
-    
+
+<section id="game-screen" hidden >
+<h2> Pizza Memory - Easy Level </h2>
+
+<div id="reference-pizza">
+  <h3>Memorize This Pizza!</h3>
+
+<div class="pizza">
+  <div class="topping-position" id="position-1"></div>
+  <div class="topping-position" id="position-2"></div>
+  <div class="topping-position" id="position-3"></div>
+</div>
+</div>
+
+<div id="player-pizza" hidden>
+    <h3>Build Your Pizza!</h3>
+    <p>Time Left: <span id="timer">8</span> seconds</p>
+    <div id="toppings-options"></div>
+    <button id="finish-btn">🔔 Finish</button>
+
+    <div class="pizza">
+      <div class="topping-position" id="player-position-1"></div>
+      <div class="topping-position" id="player-position-2"></div>
+      <div class="topping-position" id="player-position-3"></div>
+    </div>
+
+    <h3>Choose Your Toppings</h3>
+    <div id="toppings-options"></div>
+
+</div>  
+</section>
+
+
+
+
+
+
+<!--
+
+<section id="game-setup" hidden >
+<h2> Game Setup </h2>
+
+<h3> Choose Difficulty </h3>
+<button id="easy-btn">Easy</button>
+<button id="medium-btn">Medium</button>
+<button id="hard-btn">Hard</button>
+
+
+
+<h3>Number of Players</h3>
+<button id="one-player-btn">1 Player</button>
+
+<button id="two-players-btn">2 Players</button>
+<button id="three-players-btn">3 Players</button>
+<button id="four-players-btn">4 Players</button>
+
+</section>
+-->
 </body>
 </html>
