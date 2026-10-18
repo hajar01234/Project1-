@@ -9,18 +9,21 @@ const timer = document.querySelector("#timer");
 const finishBtn = document.querySelector("#finish-btn");
 const resultScreen = document.querySelector("#result-screen");
 const scoreDisplay = document.querySelector("#score-display");
+const exitBtn = document.querySelector("#exit-but")
 
 let timeLeft = 10;
 let countdown;
+let memorizeTimeout; 
+let resuleTimeout;
 let score = 0;
 const playerToppings = ["", "", ""];
 
 playBtn.addEventListener("click", () => {
 
-    homePage.hidden = true;
-    gameScreen.hidden = false;
+    homePage.style.display = 'none';
+    gameScreen.style.display = 'block';
 
-    setTimeout(() => {
+    memorizeTimeout = setTimeout(() => {
 
         referencePizza.hidden = true;
         playerPizza.hidden = false;
@@ -192,11 +195,60 @@ function calculateScore() {
 
 }
 
+exitBtn.addEventListener("click", () => {
+
+    clearTimeout(memorizeTimeout);
+    clearInterval(resuleTimeout);
+
+    gameScreen.hidden = true;
+    homePage.hidden = false;
+
+    gameScreen.style.display = "none";
+    homePage.style.display = "flex";
+
+});
+
+function startNewRound() {
+
+    timeLeft = 10;
+    timer.textContent = timeLeft;
+
+    chosenTopping = null;
+
+    playerToppings[0] = "";
+    playerToppings[1] = "";
+    playerToppings[2] = "";
+
+    playerPosition1.textContent = "";
+    playerPosition2.textContent = "";
+    playerPosition3.textContent = "";
+
+    resultScreen.hidden = true;
+    playerPizza.hidden = true;
+    referencePizza.hidden = false;
+
+}
+
+function endRound(){
+
+    clearInterval(countdown);
+    calculateScore();
+
+    referencePizza.hidden = false;
+    playerPizza.hidden = false; 
+    resuleTimeout = setTimeout(()=>{
+        startNewRound();
+    }, 10000);
+}
 
 
 
 
-// For Later
+
+
+
+
+
 //let selectedLevel =null;
 
 //easyBtn.addEventListener("click", () => {
