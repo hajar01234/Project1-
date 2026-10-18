@@ -5,12 +5,16 @@ const easyBtn = document.querySelector("#easy-btn");
 const referencePizza = document.querySelector("#reference-pizza");
 const playerPizza = document.querySelector("#player-pizza");
 const toppingsOptions = document.querySelector("#toppings-options");
-
 const timer = document.querySelector("#timer");
-let timeLeft = 8;
+const finishBtn = document.querySelector("#finish-btn");
+const resultScreen = document.querySelector("#result-screen");
+const scoreDisplay = document.querySelector("#score-display");
 
+let timeLeft = 10;
+let countdown;
+let score = 0;
+const playerToppings = ["", "", ""];
 
-// Play Button
 playBtn.addEventListener("click", () => {
 
     homePage.hidden = true;
@@ -21,7 +25,7 @@ playBtn.addEventListener("click", () => {
         referencePizza.hidden = true;
         playerPizza.hidden = false;
 
-        const countdown = setInterval(() => {
+        countdown = setInterval(() => {
 
             timeLeft--;
 
@@ -34,6 +38,8 @@ playBtn.addEventListener("click", () => {
                 referencePizza.hidden = false;
                 playerPizza.hidden = true;
 
+                calculateScore();
+
             }
 
         }, 1000);
@@ -45,7 +51,6 @@ playBtn.addEventListener("click", () => {
 console.log(playerPizza);
 
 
-// Available Toppings
 const toppings = ["🍅", "🍄", "🧅", "🥓", "🍗", "🥦"];
 
 const selectedToppings = [];
@@ -71,7 +76,6 @@ for (let i = 0; i < 3; i++) {
 console.log(selectedToppings);
 
 
-// Reference Pizza Positions
 const position1 = document.querySelector("#position-1");
 position1.textContent = selectedToppings[0];
 
@@ -82,7 +86,6 @@ const position3 = document.querySelector("#position-3");
 position3.textContent = selectedToppings[2];
 
 
-// Player Topping Selection
 let chosenTopping = null;
 
 toppings.forEach((topping) => {
@@ -104,34 +107,93 @@ toppings.forEach((topping) => {
 });
 
 
-// Player Pizza Position 1
 const playerPosition1 = document.querySelector("#player-position-1");
 
 playerPosition1.addEventListener("click", () => {
 
     playerPosition1.textContent = chosenTopping;
 
+    playerToppings[0] = chosenTopping;
+
 });
 
 
-// Player Pizza Position 2
 const playerPosition2 = document.querySelector("#player-position-2");
 
 playerPosition2.addEventListener("click", () => {
 
     playerPosition2.textContent = chosenTopping;
 
+    playerToppings[1] = chosenTopping;
+
 });
 
 
-// Player Pizza Position 3
 const playerPosition3 = document.querySelector("#player-position-3");
 
 playerPosition3.addEventListener("click", () => {
 
     playerPosition3.textContent = chosenTopping;
 
+    playerToppings[2] = chosenTopping;
+
 });
+
+finishBtn.addEventListener("click", () => {
+
+    clearInterval(countdown);
+
+    referencePizza.hidden = false;
+    playerPizza.hidden = true;
+
+    calculateScore();
+
+})
+
+function calculateScore() {
+
+  score = 0;
+
+    const remainingOriginal = [...selectedToppings];
+    const remainingPlayer = [...playerToppings];
+
+    for (let i = 0; i < 3; i++) {
+
+        if (playerToppings[i] !== "" && playerToppings[i] === selectedToppings[i]) {
+
+            score = score + 2;
+
+            remainingOriginal[i] = null;
+            remainingPlayer[i] = null;
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+
+        if (remainingPlayer[i] !== null && remainingPlayer[i] !== "") {
+
+            const index = remainingOriginal.indexOf(remainingPlayer[i]);
+
+            if (index !== -1) {
+                score = score + 1;
+                remainingOriginal[index] = null;
+            }
+
+        }
+    }
+
+    console.log("Score:" + score);
+    scoreDisplay.textContent = score;
+    resultScreen.hidden = false;
+
+    referencePizza.hidden = false;
+    playerPizza.hidden = false;
+
+
+}
+
+
+
 
 
 // For Later
@@ -139,8 +201,8 @@ playerPosition3.addEventListener("click", () => {
 
 //easyBtn.addEventListener("click", () => {
 
-    //selectedLevel = "easy";
+//selectedLevel = "easy";
 
-    //console.log(selectedLevel);
+//console.log(selectedLevel);
 
 //});
