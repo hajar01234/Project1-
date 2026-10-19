@@ -19,9 +19,27 @@ let score = 0;
 const playerToppings = ["", "", ""];
 
 playBtn.addEventListener("click", () => {
+    timeLeft = 10;
+    timer.textContent = timeLeft;
+
+    score = 0;
+    chosenTopping = null;
+    generatePizza();
+    playerToppings[0] = "";
+    playerToppings[1] = "";
+    playerToppings[2] = "";
+
+    playerPosition1.textContent = "";
+    playerPosition2.textContent = "";
+    playerPosition3.textContent = "";
+
 
     homePage.style.display = 'none';
     gameScreen.style.display = 'block';
+    gameScreen.hidden = false;
+    referencePizza.hidden = false;
+playerPizza.hidden = true;
+resultScreen.hidden = true;
 
     memorizeTimeout = setTimeout(() => {
 
@@ -36,12 +54,7 @@ playBtn.addEventListener("click", () => {
 
             if (timeLeft === 0) {
 
-                clearInterval(countdown);
-
-                referencePizza.hidden = false;
-                playerPizza.hidden = true;
-
-                calculateScore();
+                endRound();
 
             }
 
@@ -56,8 +69,10 @@ console.log(playerPizza);
 
 const toppings = ["🍅", "🍄", "🧅", "🥓", "🍗", "🥦"];
 
-const selectedToppings = [];
+let selectedToppings = [];
 
+function generatePizza(){
+    selectedToppings = [];
 for (let i = 0; i < 3; i++) {
 
     const randomIndex = Math.floor(Math.random() * toppings.length);
@@ -76,17 +91,17 @@ for (let i = 0; i < 3; i++) {
 
 }
 
+    position1.textContent = selectedToppings[0];
+    position2.textContent = selectedToppings[1];
+    position3.textContent = selectedToppings[2];
+}
+
 console.log(selectedToppings);
 
 
 const position1 = document.querySelector("#position-1");
-position1.textContent = selectedToppings[0];
-
 const position2 = document.querySelector("#position-2");
-position2.textContent = selectedToppings[1];
-
 const position3 = document.querySelector("#position-3");
-position3.textContent = selectedToppings[2];
 
 
 let chosenTopping = null;
@@ -144,14 +159,9 @@ playerPosition3.addEventListener("click", () => {
 
 finishBtn.addEventListener("click", () => {
 
-    clearInterval(countdown);
+    endRound();
 
-    referencePizza.hidden = false;
-    playerPizza.hidden = true;
-
-    calculateScore();
-
-})
+});
 
 function calculateScore() {
 
@@ -199,6 +209,7 @@ exitBtn.addEventListener("click", () => {
 
     clearTimeout(memorizeTimeout);
     clearInterval(resuleTimeout);
+    clearInterval(countdown);
 
     gameScreen.hidden = true;
     homePage.hidden = false;
