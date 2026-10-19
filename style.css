@@ -26,6 +26,10 @@ body {
   display: none;
 }
 
+#level-screen.hidden {
+    display: none;
+}
+
 
 #player-pizza .topping-position {
     display: inline-block;

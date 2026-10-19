@@ -47,6 +47,7 @@ function startGame() {
     resultScreen.hidden = true;
     memorizeTimer.parentElement.hidden = false;
     chosenTopping = null;
+    updateToppingPositions();
     generatePizza();
     playerToppings[0] = "";
     playerToppings[1] = "";
@@ -58,6 +59,7 @@ function startGame() {
     playerPosition3.textContent = "";
     playerPosition4.textContent = "";
     playerPosition5.textContent = "";
+    levelScreen.style.display = "none";
     homePage.style.display = 'none';
     gameScreen.style.display = 'block';
     gameScreen.hidden = false;
@@ -88,9 +90,11 @@ function startGame() {
 
         }, 1000);
 
-    }, 3000);
+        }, 3000);
 
-    playBtn.addEventListener("click", () => {
+}
+
+playBtn.addEventListener("click", () => {
 
     homePage.style.display = "none";
 
@@ -99,8 +103,6 @@ function startGame() {
     levelScreen.style.display = "block";
 
 });
-
-}
 
 console.log(playerPizza);
 
@@ -419,14 +421,17 @@ function updateToppingPositions() {
 easyBtn.addEventListener("click", () => {
     currentLevel = 1;
     numberOfToppings = 3;
+    startGame();
 });
 
 mediumBtn.addEventListener("click", () => {
     currentLevel = 2;
     numberOfToppings = 4;
+    startGame();
 });
 
 hardBtn.addEventListener("click", () => {
     currentLevel = 3;
     numberOfToppings = 5;
+    startGame();
 });
