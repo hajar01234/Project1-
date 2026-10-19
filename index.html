@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Memory</title>
-    <script src="./app.js" defer></script>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Memory</title>
+  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
 </head>
-<body> 
-    
-<main class="home-page">
-  <h1>Pizza Memory</h1>
-  <p>Remember the toppings. Build your pizza. Win!</p>
-  <button id="play-btn">Play</button>
-</main>
 
-<section id="game-screen" class="hidden">
-<button id ="exit-but">✖</button>
-<h2> Pizza Memory - Easy Level </h2>
+<body>
 
-<div id="reference-pizza"> 
-  <h3>Memorize This Pizza!</h3>
+  <main class="home-page">
+    <h1>Pizza Memory</h1>
+    <p>Remember the toppings. Build your pizza. Win!</p>
+    <button id="play-btn">Play</button>
+  </main>
 
-<div class="pizza">
-  <div class="topping-position" id="position-1"></div>
-  <div class="topping-position" id="position-2"></div>
-  <div class="topping-position" id="position-3"></div>
-</div>
-</div>
+  <section id="game-screen" class="hidden">
+    <button id="exit-but">✖</button>
+    <h2> Pizza Memory - Easy Level </h2>
 
-<div id="player-pizza" hidden>
-    <h3>Build Your Pizza!</h3>
-    <p>Time Left: <span id="timer">10</span> seconds</p>
-    <div id="toppings-options"></div>
-    <button id="finish-btn"> 🔔 </button>
+    <div id="reference-pizza">
+      <h3>Memorize This Pizza!</h3>
 
-    <div class="pizza">
-      <div class="topping-position" id="player-position-1"></div>
-      <div class="topping-position" id="player-position-2"></div>
-      <div class="topping-position" id="player-position-3"></div>
+      <div class="pizza">
+        <div class="topping-position" id="position-1"></div>
+        <div class="topping-position" id="position-2"></div>
+        <div class="topping-position" id="position-3"></div>
+      </div>
     </div>
 
-    <h3>Choose Your Toppings</h3>
-    <div id="toppings-options"></div>
+    <div id="player-pizza" hidden>
+      <h3>Build Your Pizza!</h3>
+      <p>Time Left: <span id="timer">10</span> seconds</p>
+      <div id="toppings-options"></div>
+      <button id="finish-btn"> 🔔 </button>
 
-</div>  
-<div id="result-screen" hidden>
-    <h2>Round Result 🍕</h2>
-    <p>Your Score: <span id="score-display">0</span></p>
-</div>
-</section>
+      <div class="pizza">
+        <div class="topping-position" id="player-position-1"></div>
+        <div class="topping-position" id="player-position-2"></div>
+        <div class="topping-position" id="player-position-3"></div>
+
+      </div>
+
+      <h3>Choose Your Toppings</h3>
+      <div id="toppings-options"></div>
+
+    </div>
+    <div id="result-screen" hidden>
+      <h2>Round Result 🍕</h2>
+      <p>Round Score: <span id="score-display">0</span></p>
+      <p>Total Score: <span id="total-score-display">0</span></p>
+
+    </div>
+    <div id="win-screen" hidden>
+      <h2>🎉 You Win! 🎉</h2>
+      <h1> ⭐⭐⭐ </h1>
+      <p>Congratulations! You reached 10 points!</p>
+      <p>Total Score: <span id="final-score">0</span></p>
+    </div>
+
+    <div id="lose-screen" hidden>
+      <h2> 😢 You lose! 😢</h2>
+      <h1> 💔💔💔 </h1>
+      <p>Butter luck next time!</p>
+      <p>Total Score: <span id="lose-score">0</span></p>
+    </div>
+  </section>
 
 
-
-
-
-
-<!--
+  <!--
 
 <section id="game-setup" hidden >
 <h2> Game Setup </h2>
@@ -78,4 +92,5 @@
 </section>
 -->
 </body>
+
 </html>

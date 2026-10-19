@@ -9,51 +9,46 @@ const timer = document.querySelector("#timer");
 const finishBtn = document.querySelector("#finish-btn");
 const resultScreen = document.querySelector("#result-screen");
 const scoreDisplay = document.querySelector("#score-display");
+const totalScoreDisplay = document.querySelector("#total-score-display");
 const exitBtn = document.querySelector("#exit-but")
+const winSreen = document.querySelector("#win-screen")
+const finalScore = document.querySelector("#final-score")
+const loseSreen = document.querySelector("#lose-screen")
+const loseScore = document.querySelector("#lose-score")
 
 let timeLeft = 10;
 let countdown;
-let memorizeTimeout; 
+let memorizeTimeout;
 let resuleTimeout;
 let score = 0;
+let totalScore = 0;
 const playerToppings = ["", "", ""];
 
 playBtn.addEventListener("click", () => {
     timeLeft = 10;
     timer.textContent = timeLeft;
-
     score = 0;
     chosenTopping = null;
     generatePizza();
     playerToppings[0] = "";
     playerToppings[1] = "";
     playerToppings[2] = "";
-
     playerPosition1.textContent = "";
     playerPosition2.textContent = "";
     playerPosition3.textContent = "";
-
-
     homePage.style.display = 'none';
     gameScreen.style.display = 'block';
     gameScreen.hidden = false;
     referencePizza.hidden = false;
-playerPizza.hidden = true;
-resultScreen.hidden = true;
-
+    playerPizza.hidden = true;
+    resultScreen.hidden = true;
     memorizeTimeout = setTimeout(() => {
-
         referencePizza.hidden = true;
         playerPizza.hidden = false;
-
         countdown = setInterval(() => {
-
             timeLeft--;
-
             timer.textContent = timeLeft;
-
             if (timeLeft === 0) {
-
                 endRound();
 
             }
@@ -68,28 +63,26 @@ console.log(playerPizza);
 
 
 const toppings = ["🍅", "🍄", "🧅", "🥓", "🍗", "🥦"];
-
 let selectedToppings = [];
-
-function generatePizza(){
+function generatePizza() {
     selectedToppings = [];
-for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
 
-    const randomIndex = Math.floor(Math.random() * toppings.length);
+        const randomIndex = Math.floor(Math.random() * toppings.length);
 
-    const randomTopping = toppings[randomIndex];
+        const randomTopping = toppings[randomIndex];
 
-    if (selectedToppings.filter(topping => topping === randomTopping).length < 2) {
+        if (selectedToppings.filter(topping => topping === randomTopping).length < 2) {
 
-        selectedToppings.push(randomTopping);
+            selectedToppings.push(randomTopping);
 
-    } else {
+        } else {
 
-        i--;
+            i--;
+
+        }
 
     }
-
-}
 
     position1.textContent = selectedToppings[0];
     position2.textContent = selectedToppings[1];
@@ -165,7 +158,7 @@ finishBtn.addEventListener("click", () => {
 
 function calculateScore() {
 
-  score = 0;
+    score = 0;
 
     const remainingOriginal = [...selectedToppings];
     const remainingPlayer = [...playerToppings];
@@ -195,8 +188,11 @@ function calculateScore() {
         }
     }
 
-    console.log("Score:" + score);
+    totalScore = totalScore + score;
+    console.log("Total Score:" + totalScore);
+    console.log("Round Score:" + score);
     scoreDisplay.textContent = score;
+    totalScoreDisplay.textContent = totalScore;
     resultScreen.hidden = false;
 
     referencePizza.hidden = false;
@@ -216,6 +212,7 @@ exitBtn.addEventListener("click", () => {
 
     gameScreen.style.display = "none";
     homePage.style.display = "flex";
+    winSreen.style.display = 'none';
 
 });
 
@@ -225,6 +222,7 @@ function startNewRound() {
     timer.textContent = timeLeft;
 
     chosenTopping = null;
+    generatePizza();
 
     playerToppings[0] = "";
     playerToppings[1] = "";
@@ -238,34 +236,61 @@ function startNewRound() {
     playerPizza.hidden = true;
     referencePizza.hidden = false;
 
+    memorizeTimeout = setTimeout(() => {
+
+        referencePizza.hidden = true;
+        playerPizza.hidden = false;
+
+        countdown = setInterval(() => {
+
+            timeLeft--;
+            timer.textContent = timeLeft;
+
+            if (timeLeft === 0) {
+                endRound();
+            }
+
+        }, 1000);
+
+    }, 3000);
+
 }
 
-function endRound(){
+function endRound() {
 
     clearInterval(countdown);
     calculateScore();
 
     referencePizza.hidden = false;
-    playerPizza.hidden = false; 
-    resuleTimeout = setTimeout(()=>{
-        startNewRound();
-    }, 10000);
+    playerPizza.hidden = false;
+
+    resuleTimeout = setTimeout(() => {
+        if (totalScore >= 10) {
+            showWinScreen();
+        } else {
+            startNewRound();
+        }
+    }, 5000);
 }
 
+function showWinScreen() {
+    referencePizza.hidden = true;
+    playerPizza.hidden = true;
+    resultScreen.hidden = true;
 
+    finalScore.textContent = totalScore;
+    winSreen.hidden = false;
 
+}
 
+function showLoseScreen() {
+    referencePizza.hidden =true;
+    resultScreen.hidden = true;
+    playerPizza.hidden = true;
+    winSreen.hidden = true;
 
+    loseScore.textContent = totalScore;
+    loseSreen.hidden = false;
 
+}
 
-
-
-//let selectedLevel =null;
-
-//easyBtn.addEventListener("click", () => {
-
-//selectedLevel = "easy";
-
-//console.log(selectedLevel);
-
-//});
