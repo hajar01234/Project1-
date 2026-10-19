@@ -2,6 +2,8 @@ const playBtn = document.querySelector("#play-btn");
 const homePage = document.querySelector(".home-page");
 const gameScreen = document.querySelector("#game-screen");
 const easyBtn = document.querySelector("#easy-btn");
+const mediumBtn = document.querySelector("#medium-btn");
+const hardBtn = document.querySelector("#hard-btn");
 const referencePizza = document.querySelector("#reference-pizza");
 const playerPizza = document.querySelector("#player-pizza");
 const toppingsOptions = document.querySelector("#toppings-options");
@@ -17,6 +19,7 @@ const loseSreen = document.querySelector("#lose-screen")
 const loseScore = document.querySelector("#lose-score")
 const memorizeTimer = document.querySelector("#memorize-timer");
 const resultTimer = document.querySelector("#result-timer");
+const levelScreen = document.querySelector("#level-screen");
 
 let timeLeft = 10;
 let countdown;
@@ -30,9 +33,9 @@ let roundFinished = false;
 let currentRound = 1;
 let currentLevel = 1;
 let numberOfToppings = 3;
-const playerToppings = ["", "", ""];
+const playerToppings = ["", "", "", "", ""];
 
-playBtn.addEventListener("click", () => {
+function startGame() {
     timeLeft = 10;
     timer.textContent = timeLeft;
     score = 0;
@@ -48,9 +51,13 @@ playBtn.addEventListener("click", () => {
     playerToppings[0] = "";
     playerToppings[1] = "";
     playerToppings[2] = "";
+    playerToppings[3] = "";
+    playerToppings[4] = "";
     playerPosition1.textContent = "";
     playerPosition2.textContent = "";
     playerPosition3.textContent = "";
+    playerPosition4.textContent = "";
+    playerPosition5.textContent = "";
     homePage.style.display = 'none';
     gameScreen.style.display = 'block';
     gameScreen.hidden = false;
@@ -64,7 +71,7 @@ playBtn.addEventListener("click", () => {
     memorizeCountdown = setInterval(() => {
         memorizeTimeLeft--;
         memorizeTimer.textContent = memorizeTimeLeft;
-        if(memorizeTimeLeft <=0 ){
+        if (memorizeTimeLeft <= 0) {
             clearInterval(memorizeCountdown);
         }
     }, 1000);
@@ -83,7 +90,17 @@ playBtn.addEventListener("click", () => {
 
     }, 3000);
 
+    playBtn.addEventListener("click", () => {
+
+    homePage.style.display = "none";
+
+    levelScreen.classList.remove("hidden");
+    levelScreen.hidden = false;
+    levelScreen.style.display = "block";
+
 });
+
+}
 
 console.log(playerPizza);
 
@@ -92,7 +109,7 @@ const toppings = ["🍅", "🍄", "🧅", "🥓", "🍗", "🥦"];
 let selectedToppings = [];
 function generatePizza() {
     selectedToppings = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < numberOfToppings; i++) {
 
         const randomIndex = Math.floor(Math.random() * toppings.length);
 
@@ -113,6 +130,8 @@ function generatePizza() {
     position1.textContent = selectedToppings[0];
     position2.textContent = selectedToppings[1];
     position3.textContent = selectedToppings[2];
+    position4.textContent = selectedToppings[3] || "";
+    position5.textContent = selectedToppings[4] || "";
 }
 
 console.log(selectedToppings);
@@ -121,6 +140,8 @@ console.log(selectedToppings);
 const position1 = document.querySelector("#position-1");
 const position2 = document.querySelector("#position-2");
 const position3 = document.querySelector("#position-3");
+const position4 = document.querySelector("#position-4");
+const position5 = document.querySelector("#position-5");
 
 
 let chosenTopping = null;
@@ -145,7 +166,6 @@ toppings.forEach((topping) => {
 
 
 const playerPosition1 = document.querySelector("#player-position-1");
-
 playerPosition1.addEventListener("click", () => {
 
     playerPosition1.textContent = chosenTopping;
@@ -156,7 +176,6 @@ playerPosition1.addEventListener("click", () => {
 
 
 const playerPosition2 = document.querySelector("#player-position-2");
-
 playerPosition2.addEventListener("click", () => {
 
     playerPosition2.textContent = chosenTopping;
@@ -167,7 +186,6 @@ playerPosition2.addEventListener("click", () => {
 
 
 const playerPosition3 = document.querySelector("#player-position-3");
-
 playerPosition3.addEventListener("click", () => {
 
     playerPosition3.textContent = chosenTopping;
@@ -175,6 +193,23 @@ playerPosition3.addEventListener("click", () => {
     playerToppings[2] = chosenTopping;
 
 });
+
+const playerPosition4 = document.querySelector("#player-position-4");
+playerPosition4.addEventListener("click", () => {
+    if (chosenTopping === null) return;
+
+    playerPosition4.textContent = chosenTopping;
+    playerToppings[3] = chosenTopping;
+});
+
+const playerPosition5 = document.querySelector("#player-position-5");
+playerPosition5.addEventListener("click", () => {
+    if (chosenTopping === null) return;
+
+    playerPosition5.textContent = chosenTopping;
+    playerToppings[4] = chosenTopping;
+});
+
 
 finishBtn.addEventListener("click", () => {
 
@@ -189,7 +224,7 @@ function calculateScore() {
     const remainingOriginal = [...selectedToppings];
     const remainingPlayer = [...playerToppings];
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < numberOfToppings; i++) {
 
         if (playerToppings[i] !== "" && playerToppings[i] === selectedToppings[i]) {
 
@@ -254,15 +289,20 @@ function startNewRound() {
     timer.textContent = timeLeft;
 
     chosenTopping = null;
+    updateToppingPositions();
     generatePizza();
 
     playerToppings[0] = "";
     playerToppings[1] = "";
     playerToppings[2] = "";
+    playerToppings[3] = "";
+    playerToppings[4] = "";
 
     playerPosition1.textContent = "";
     playerPosition2.textContent = "";
     playerPosition3.textContent = "";
+    playerPosition4.textContent = "";
+    playerPosition5.textContent = "";
 
     resultScreen.hidden = true;
     playerPizza.hidden = true;
@@ -357,3 +397,36 @@ function showLoseScreen() {
 
 }
 
+function updateToppingPositions() {
+
+    const referencePositions = [
+        position1, position2, position3, position4, position5
+    ];
+
+    const playerPositions = [
+        playerPosition1, playerPosition2, playerPosition3,
+        playerPosition4, playerPosition5
+    ];
+
+    for (let i = 0; i < 5; i++) {
+
+        referencePositions[i].hidden = i >= numberOfToppings;
+
+        playerPositions[i].hidden = i >= numberOfToppings;
+    }
+}
+
+easyBtn.addEventListener("click", () => {
+    currentLevel = 1;
+    numberOfToppings = 3;
+});
+
+mediumBtn.addEventListener("click", () => {
+    currentLevel = 2;
+    numberOfToppings = 4;
+});
+
+hardBtn.addEventListener("click", () => {
+    currentLevel = 3;
+    numberOfToppings = 5;
+});
