@@ -15,19 +15,34 @@ const winSreen = document.querySelector("#win-screen")
 const finalScore = document.querySelector("#final-score")
 const loseSreen = document.querySelector("#lose-screen")
 const loseScore = document.querySelector("#lose-score")
+const memorizeTimer = document.querySelector("#memorize-timer");
+const resultTimer = document.querySelector("#result-timer");
 
 let timeLeft = 10;
 let countdown;
 let memorizeTimeout;
+let memorizeCountdown;
+let resultCountdown;
 let resuleTimeout;
 let score = 0;
 let totalScore = 0;
+let roundFinished = false;
+let currentRound = 1;
+let currentLevel = 1;
+let numberOfToppings = 3;
 const playerToppings = ["", "", ""];
 
 playBtn.addEventListener("click", () => {
     timeLeft = 10;
     timer.textContent = timeLeft;
     score = 0;
+    totalScore = 0;
+    currentRound = 1;
+
+    winSreen.hidden = true;
+    loseScore.hidden = false;
+    resultScreen.hidden = true;
+    memorizeTimer.parentElement.hidden = false;
     chosenTopping = null;
     generatePizza();
     playerToppings[0] = "";
@@ -42,6 +57,17 @@ playBtn.addEventListener("click", () => {
     referencePizza.hidden = false;
     playerPizza.hidden = true;
     resultScreen.hidden = true;
+    let memorizeTimeLeft = 3;
+    clearInterval(memorizeCountdown);
+    memorizeTimer.textContent = memorizeTimeLeft;
+
+    memorizeCountdown = setInterval(() => {
+        memorizeTimeLeft--;
+        memorizeTimer.textContent = memorizeTimeLeft;
+        if(memorizeTimeLeft <=0 ){
+            clearInterval(memorizeCountdown);
+        }
+    }, 1000);
     memorizeTimeout = setTimeout(() => {
         referencePizza.hidden = true;
         playerPizza.hidden = false;
@@ -204,19 +230,25 @@ function calculateScore() {
 exitBtn.addEventListener("click", () => {
 
     clearTimeout(memorizeTimeout);
-    clearInterval(resuleTimeout);
+    clearTimeout(resuleTimeout);
     clearInterval(countdown);
+    clearInterval(memorizeCountdown);
+    clearInterval(resultCountdown);
 
     gameScreen.hidden = true;
     homePage.hidden = false;
 
     gameScreen.style.display = "none";
     homePage.style.display = "flex";
-    winSreen.style.display = 'none';
+    //winSreen.style.display = 'none';
+    winSreen.hidden = true;
+    loseSreen.hidden = true;
+    resultScreen.hidden = true;
 
 });
 
 function startNewRound() {
+    roundFinished = false;
 
     timeLeft = 10;
     timer.textContent = timeLeft;
@@ -235,8 +267,17 @@ function startNewRound() {
     resultScreen.hidden = true;
     playerPizza.hidden = true;
     referencePizza.hidden = false;
+    memorizeTimer.parentElement.hidden = false;
+    let memorizeTimeLeft = 3;
+    memorizeTimer.textContent = memorizeTimeLeft;
+
+    memorizeCountdown = setInterval(() => {
+        memorizeTimeLeft--;
+        memorizeTimer.textContent = memorizeTimeLeft;
+    }, 1000);
 
     memorizeTimeout = setTimeout(() => {
+        clearInterval(memorizeCountdown);
 
         referencePizza.hidden = true;
         playerPizza.hidden = false;
@@ -244,6 +285,8 @@ function startNewRound() {
         countdown = setInterval(() => {
 
             timeLeft--;
+            console.log("Time Left:", timeLeft);
+
             timer.textContent = timeLeft;
 
             if (timeLeft === 0) {
@@ -257,17 +300,37 @@ function startNewRound() {
 }
 
 function endRound() {
+    if (roundFinished) return;
+    roundFinished = true;
 
     clearInterval(countdown);
     calculateScore();
 
     referencePizza.hidden = false;
     playerPizza.hidden = false;
+    memorizeTimer.parentElement.hidden = true;
+    let resultTimeLeft = 10;
+    resultTimer.textContent = resultTimeLeft;
+
+    resultCountdown = setInterval(() => {
+        resultTimeLeft--;
+        resultTimer.textContent = resultTimeLeft;
+    }, 1000);
 
     resuleTimeout = setTimeout(() => {
+        clearInterval(resultCountdown);
         if (totalScore >= 10) {
             showWinScreen();
+        } else if ((currentRound === 1 && totalScore <= 3) ||
+            (currentRound === 2 && totalScore <= 5) ||
+            (currentRound === 3 && totalScore <= 7) ||
+            (currentRound === 4 && totalScore <= 9)
+        ) {
+
+            showLoseScreen();
+
         } else {
+            currentRound++;
             startNewRound();
         }
     }, 5000);
@@ -284,7 +347,7 @@ function showWinScreen() {
 }
 
 function showLoseScreen() {
-    referencePizza.hidden =true;
+    referencePizza.hidden = true;
     resultScreen.hidden = true;
     playerPizza.hidden = true;
     winSreen.hidden = true;
