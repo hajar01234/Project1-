@@ -213,7 +213,7 @@ playerPosition2.addEventListener("click", () => {
 
     const playerPosition2Image = document.createElement('img')
     playerPosition2Image.src = chosenTopping
-    playerPosition2Image.classList.add('position1Image')
+    playerPosition2Image.classList.add('position2Image')
     playerPosition2.appendChild(playerPosition2Image)
 
     playerPosition2.src = chosenTopping;
@@ -228,7 +228,7 @@ playerPosition3.addEventListener("click", () => {
 
     const playerPosition3Image = document.createElement('img')
     playerPosition3Image.src = chosenTopping
-    playerPosition3Image.classList.add('position1Image')
+    playerPosition3Image.classList.add('position3Image')
     playerPosition3.appendChild(playerPosition3Image)
 
     playerPosition3.src = chosenTopping;
@@ -242,8 +242,8 @@ playerPosition4.addEventListener("click", () => {
     if (chosenTopping === null) return;
     const playerPosition4Image = document.createElement('img')
     playerPosition4Image.src = chosenTopping
-    playerPosition4Image.classList.add('position1Image')
-    playerPosition4.appendChild(playerPosition1Image)
+    playerPosition4Image.classList.add('position4Image')
+    playerPosition4.appendChild(playerPosition4Image)
 
     playerPosition4.src = chosenTopping;
     playerToppings[3] = chosenTopping;
@@ -254,8 +254,8 @@ playerPosition5.addEventListener("click", () => {
     if (chosenTopping === null) return;
     const playerPosition5Image = document.createElement('img')
     playerPosition5Image.src = chosenTopping
-    playerPosition5Image.classList.add('position1Image')
-    playerPosition5.appendChild(playerPosition1Image)
+    playerPosition5Image.classList.add('position5Image')
+    playerPosition5.appendChild(playerPosition5Image)
 
     playerPosition5.src = chosenTopping;
     playerToppings[4] = chosenTopping;
