@@ -124,7 +124,8 @@ playBtn.addEventListener("click", () => {
 console.log(playerPizza);
 
 
-const toppings = ["🍅", "🍄", "🧅", "🥓", "🍗", "🥦"];
+const toppings = ["./img/tomato.PNG", "./img/mushroom.PNG", "./img/onion.PNG", "./img/pepperroni.PNG", "./img/olive.PNG", "./img/bell-pepper.PNG"];
+
 let selectedToppings = [];
 function generatePizza() {
     selectedToppings = [];
@@ -146,30 +147,35 @@ function generatePizza() {
 
     }
 
-    position1.textContent = selectedToppings[0];
-    position2.textContent = selectedToppings[1];
-    position3.textContent = selectedToppings[2];
-    position4.textContent = selectedToppings[3] || "";
-    position5.textContent = selectedToppings[4] || "";
+
+    position1.src = selectedToppings[0];
+    position2.src = selectedToppings[1];
+    position3.src = selectedToppings[2];
+    position4.src = selectedToppings[3] || "";
+    position5.src = selectedToppings[4] || "";
 }
 
 console.log(selectedToppings);
 
 
-const position1 = document.querySelector("#position-1");
-const position2 = document.querySelector("#position-2");
-const position3 = document.querySelector("#position-3");
-const position4 = document.querySelector("#position-4");
-const position5 = document.querySelector("#position-5");
+const position1 = document.querySelector("#position-1").children[0];
+const position2 = document.querySelector("#position-2").children[0];
+const position3 = document.querySelector("#position-3").children[0];
+const position4 = document.querySelector("#position-4").children[0];
+const position5 = document.querySelector("#position-5").children[0];
 
 
 let chosenTopping = null;
 
 toppings.forEach((topping) => {
 
-    const button = document.createElement("button");
+    const  button = document.createElement("button");
+    const buttonImage = document.createElement('img')
+    buttonImage.src = `${topping}`
+    buttonImage.classList.add('veggies')
+    button.appendChild(buttonImage)
 
-    button.textContent = topping;
+    // button.textContent = topping;
 
     button.addEventListener("click", () => {
 
@@ -185,11 +191,19 @@ toppings.forEach((topping) => {
 
 
 const playerPosition1 = document.querySelector("#player-position-1");
-playerPosition1.addEventListener("click", () => {
 
-    playerPosition1.textContent = chosenTopping;
+playerPosition1.addEventListener("click", () => {
+    const playerPosition1Image = document.createElement('img')
+    playerPosition1Image.src = chosenTopping
+    playerPosition1Image.classList.add('position1Image')
+    playerPosition1.appendChild(playerPosition1Image)
+    // playerPosition1Image.src = chosenTopping
+    
+    // playerPosition1.textContent = chosenTopping;
+
 
     playerToppings[0] = chosenTopping;
+    console.log('here')
 
 });
 
@@ -197,7 +211,12 @@ playerPosition1.addEventListener("click", () => {
 const playerPosition2 = document.querySelector("#player-position-2");
 playerPosition2.addEventListener("click", () => {
 
-    playerPosition2.textContent = chosenTopping;
+    const playerPosition2Image = document.createElement('img')
+    playerPosition2Image.src = chosenTopping
+    playerPosition2Image.classList.add('position1Image')
+    playerPosition2.appendChild(playerPosition2Image)
+
+    playerPosition2.src = chosenTopping;
 
     playerToppings[1] = chosenTopping;
 
@@ -207,7 +226,12 @@ playerPosition2.addEventListener("click", () => {
 const playerPosition3 = document.querySelector("#player-position-3");
 playerPosition3.addEventListener("click", () => {
 
-    playerPosition3.textContent = chosenTopping;
+    const playerPosition3Image = document.createElement('img')
+    playerPosition3Image.src = chosenTopping
+    playerPosition3Image.classList.add('position1Image')
+    playerPosition3.appendChild(playerPosition3Image)
+
+    playerPosition3.src = chosenTopping;
 
     playerToppings[2] = chosenTopping;
 
@@ -217,7 +241,7 @@ const playerPosition4 = document.querySelector("#player-position-4");
 playerPosition4.addEventListener("click", () => {
     if (chosenTopping === null) return;
 
-    playerPosition4.textContent = chosenTopping;
+    playerPosition4.src = chosenTopping;
     playerToppings[3] = chosenTopping;
 });
 
@@ -225,7 +249,7 @@ const playerPosition5 = document.querySelector("#player-position-5");
 playerPosition5.addEventListener("click", () => {
     if (chosenTopping === null) return;
 
-    playerPosition5.textContent = chosenTopping;
+    playerPosition5.src = chosenTopping;
     playerToppings[4] = chosenTopping;
 });
 
