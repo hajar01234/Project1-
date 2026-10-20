@@ -12,53 +12,54 @@ body {
   text-align: center;
 }
 
-.home-page{
-   min-height: 100vh;
+.home-page {
+  min-height: 100vh;
   background-image: url("./img/Home-Page.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .home-page h1 {
-    font-family: 'Fredoka', sans-serif;
-    font-size: clamp(45px, 7vw, 90px);
-    font-weight: 900;
-    color: #ffbd35;
-    -webkit-text-stroke: 3px #68300f;
-    text-shadow: 4px 5px 0 #a7440d,
-                 7px 9px 0 #542308;
-    margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(45px, 7vw, 90px);
+  font-weight: 900;
+  color: #ffbd35;
+  -webkit-text-stroke: 3px #68300f;
+  text-shadow: 4px 5px 0 #a7440d,
+    7px 9px 0 #542308;
+  margin: 0;
 }
 
 .home-page p {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 3px 5px #47220f;
-    margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 3px 5px #47220f;
+  margin: 0;
 }
 
 #play-btn {
-    margin-top: 20px;
-    padding: 16px 75px;
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(#ff6953, #ef3025);
-    border: 4px solid #80250e;
-    border-radius: 50px;
-    box-shadow: 0 7px 0 #7b2413,
-                0 12px 20px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.2s;
+  margin-top: 20px;
+  padding: 16px 75px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(#ff6953, #ef3025);
+  border: 4px solid #80250e;
+  border-radius: 50px;
+  box-shadow: 0 7px 0 #7b2413,
+    0 12px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 #play-btn:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 #play-btn:active {
-    transform: translateY(4px);
+  transform: translateY(4px);
 }
 
 #game-screen {
@@ -70,28 +71,141 @@ body {
   text-align: center;
 }
 
-#game-screen{
+#game-screen {
   display: none;
 }
 
 #level-screen.hidden {
-    display: none;
+  display: none;
 }
 
 
 #player-pizza .topping-position {
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    border: 2px dashed brown;
-    margin: 10px;
-    text-align: center;
-    line-height: 70px;
-    font-size: 35px;
-    cursor: pointer;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 2px dashed brown;
+  margin: 10px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 35px;
+  cursor: pointer;
 }
 
+#level-screen {
+  min-height: 100vh;
+  background-image: url("./img/levels.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+  text-align: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
 
+#level-screen.hidden {
+  display: none;
+}
 
+#level-screen h2 {
+  font-size: 55px;
+  font-weight: 900;
+  color: #fff5dd;
+  -webkit-text-stroke: 2px #57260e;
+  text-shadow: 4px 5px 0 #743512;
+  margin: 0 0 100px;
+}
 
+.level-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  transform: translateY(-65px);
+}
+
+.level-card {
+  width: 250px;
+  height: 350px;
+  border: none;
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 20px 10px 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.level-name {
+  font-size: 32px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 2px 3px 3px #48200b;
+  margin-top: 35px;
+  width: 100%;
+  text-align: center;
+}
+
+.easy {
+  color: #ffffff;
+}
+
+.medium {
+  color: #ffffff;
+}
+
+.hard {
+  color: #ffffff;
+}
+
+.level-info {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4d220d;
+  max-width: 170px;
+}
+
+.level-card:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 700px) {
+  #level-screen h2 {
+    font-size: 35px;
+    margin-bottom: 50px;
+  }
+
+  .level-cards {
+    gap: 5px;
+  }
+
+  .level-card {
+    width: 32%;
+    height: 230px;
+  }
+
+  .level-name {
+    font-size: 22px;
+  }
+
+  .level-info {
+    font-size: 14px;
+  }
+}
+
+#easy-btn .level-name {
+  transform: translateX(-75px);
+}
+
+#medium-btn .level-name {
+  transform: translateX(0);
+}
+
+#hard-btn .level-name {
+  transform: translateX(75px);
+}
