@@ -38,13 +38,13 @@ let numberOfToppings = 3;
 const playerToppings = ["", "", "", "", ""];
 
 function startGame() {
-    if (currentLevel==1){
-        levelTitle.textContent ="Easy Level";
-    } else if ( currentLevel==2){
-        levelTitle.textContent ="Medium Level";
-    }else{
+    if (currentLevel == 1) {
+        levelTitle.textContent = "Easy Level";
+    } else if (currentLevel == 2) {
+        levelTitle.textContent = "Medium Level";
+    } else {
 
-        levelTitle.textContent="Hard Level";
+        levelTitle.textContent = "Hard Level";
     }
     timeLeft = 10;
     timer.textContent = timeLeft;
@@ -169,7 +169,7 @@ let chosenTopping = null;
 
 toppings.forEach((topping) => {
 
-    const  button = document.createElement("button");
+    const button = document.createElement("button");
     const buttonImage = document.createElement('img')
     buttonImage.src = `${topping}`
     buttonImage.classList.add('veggies')
@@ -198,7 +198,7 @@ playerPosition1.addEventListener("click", () => {
     playerPosition1Image.classList.add('position1Image')
     playerPosition1.appendChild(playerPosition1Image)
     // playerPosition1Image.src = chosenTopping
-    
+
     // playerPosition1.textContent = chosenTopping;
 
 
@@ -240,6 +240,10 @@ playerPosition3.addEventListener("click", () => {
 const playerPosition4 = document.querySelector("#player-position-4");
 playerPosition4.addEventListener("click", () => {
     if (chosenTopping === null) return;
+    const playerPosition4Image = document.createElement('img')
+    playerPosition4Image.src = chosenTopping
+    playerPosition4Image.classList.add('position1Image')
+    playerPosition4.appendChild(playerPosition1Image)
 
     playerPosition4.src = chosenTopping;
     playerToppings[3] = chosenTopping;
@@ -248,6 +252,10 @@ playerPosition4.addEventListener("click", () => {
 const playerPosition5 = document.querySelector("#player-position-5");
 playerPosition5.addEventListener("click", () => {
     if (chosenTopping === null) return;
+    const playerPosition5Image = document.createElement('img')
+    playerPosition5Image.src = chosenTopping
+    playerPosition5Image.classList.add('position1Image')
+    playerPosition5.appendChild(playerPosition1Image)
 
     playerPosition5.src = chosenTopping;
     playerToppings[4] = chosenTopping;
