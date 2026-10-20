@@ -110,7 +110,7 @@ body {
   font-weight: 900;
   color: white;
   position: relative;
-  top: 100px;
+  top: 55px;
 }
 
 .easy,
@@ -425,4 +425,217 @@ border: 4px solid #3F6F2C;
 #finish-btn:active {
     transform: translateY(4px);
     box-shadow: 0 2px 0 #1e6424;
+}
+
+#result-screen {
+    text-align: center;
+    padding: 20px;
+}
+
+#result-screen h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: #ffbd35;
+    -webkit-text-stroke: 2px #68300f;
+    text-shadow: 4px 5px 0 #a7440d;
+    margin: 10px 0 25px;
+}
+
+.pizza-comparison {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    background: #fff0cf;
+    border: 6px solid #8b451e;
+    border-radius: 25px;
+
+    padding: 25px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.result-pizza-box {
+    text-align: center;
+}
+
+.result-pizza-box h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 25px;
+    color: white;
+
+    background: linear-gradient(#c97832, #96501f);
+    border: 3px solid #743512;
+    border-radius: 30px;
+
+    padding: 10px 20px;
+    margin: 0 0 15px;
+}
+
+.result-pizza {
+    width: 280px;
+    height: 280px;
+
+    background-image: url("./img/pizza.PNG");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    margin: 0 auto;
+}
+
+.result-position {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-position img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.result-position:nth-child(1) {
+    top: 20%;
+    left: 25%;
+}
+
+.result-position:nth-child(2) {
+    top: 20%;
+    right: 25%;
+}
+
+.result-position:nth-child(3) {
+    top: 45%;
+    left: 42%;
+}
+
+.result-position:nth-child(4) {
+    bottom: 20%;
+    left: 25%;
+}
+
+.result-position:nth-child(5) {
+    bottom: 20%;
+    right: 25%;
+}
+
+#result-screen > p {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #68300f;
+
+    text-shadow: 1px 2px 2px rgba(255, 220, 160, 0.5);
+    margin: 15px 0;
+}
+#score-display,
+#total-score-display,
+#result-timer {
+    font-size: 30px;
+    font-weight: 900;
+    color: #58190c;
+}
+
+#win-screen {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 30px auto;
+    max-width: 650px;
+}
+
+#win-screen h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: #ffbd35;
+
+    -webkit-text-stroke: 3px #68300f;
+    text-shadow: 4px 5px 0 #a7440d;
+
+    margin: 15px 0;
+}
+
+#win-screen h1 {
+    font-size: 75px;
+    margin: 20px 0;
+    filter: drop-shadow(3px 5px 3px rgba(0,0,0,0.3));
+}
+
+#win-screen p {
+    background: #fff0cf;
+    border: 4px solid #8b451e;
+    border-radius: 20px;
+
+    padding: 18px 25px;
+    margin: 15px auto;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #68300f;
+
+    box-shadow: 0 6px 0 #6b3519;
+}
+#final-score {
+    color: #e94b2c;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+
+#lose-screen {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 30px auto;
+    max-width: 650px;
+}
+
+#lose-screen h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: #ff6953;
+
+    -webkit-text-stroke: 3px #68300f;
+    text-shadow: 4px 5px 0 #a7440d;
+
+    margin: 15px 0;
+}
+
+#lose-screen h1 {
+    font-size: 75px;
+    margin: 20px 0;
+    filter: drop-shadow(3px 5px 3px rgba(0,0,0,0.3));
+}
+
+#lose-screen p {
+    background: #fff0cf;
+    border: 4px solid #8b451e;
+    border-radius: 20px;
+
+    padding: 18px 25px;
+    margin: 15px auto;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #68300f;
+
+    box-shadow: 0 6px 0 #6b3519;
+}
+
+#lose-score {
+    color: #e94b2c;
+    font-size: 32px;
+    font-weight: 900;
 }

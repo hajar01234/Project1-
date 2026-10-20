@@ -196,7 +196,7 @@ playerPosition1.addEventListener("click", () => {
     const playerPosition1Image = document.createElement('img')
     playerPosition1Image.src = chosenTopping
     playerPosition1Image.classList.add('position1Image')
-    playerPosition1.appendChild(playerPosition1Image)
+    playerPosition1.replaceChildren(playerPosition1Image)
     // playerPosition1Image.src = chosenTopping
 
     // playerPosition1.textContent = chosenTopping;
@@ -214,7 +214,7 @@ playerPosition2.addEventListener("click", () => {
     const playerPosition2Image = document.createElement('img')
     playerPosition2Image.src = chosenTopping
     playerPosition2Image.classList.add('position2Image')
-    playerPosition2.appendChild(playerPosition2Image)
+    playerPosition2.replaceChildren(playerPosition2Image)
 
     playerPosition2.src = chosenTopping;
 
@@ -229,7 +229,7 @@ playerPosition3.addEventListener("click", () => {
     const playerPosition3Image = document.createElement('img')
     playerPosition3Image.src = chosenTopping
     playerPosition3Image.classList.add('position3Image')
-    playerPosition3.appendChild(playerPosition3Image)
+    playerPosition3.replaceChildren(playerPosition3Image)
 
     playerPosition3.src = chosenTopping;
 
@@ -243,7 +243,7 @@ playerPosition4.addEventListener("click", () => {
     const playerPosition4Image = document.createElement('img')
     playerPosition4Image.src = chosenTopping
     playerPosition4Image.classList.add('position4Image')
-    playerPosition4.appendChild(playerPosition4Image)
+    playerPosition4.replaceChildren(playerPosition4Image)
 
     playerPosition4.src = chosenTopping;
     playerToppings[3] = chosenTopping;
@@ -255,7 +255,7 @@ playerPosition5.addEventListener("click", () => {
     const playerPosition5Image = document.createElement('img')
     playerPosition5Image.src = chosenTopping
     playerPosition5Image.classList.add('position5Image')
-    playerPosition5.appendChild(playerPosition5Image)
+    playerPosition5.replaceChildren(playerPosition5Image)
 
     playerPosition5.src = chosenTopping;
     playerToppings[4] = chosenTopping;
@@ -401,7 +401,7 @@ function endRound() {
     referencePizza.hidden = false;
     playerPizza.hidden = false;
     memorizeTimer.parentElement.hidden = true;
-    let resultTimeLeft = 5;
+    let resultTimeLeft = 10;
     resultTimer.textContent = resultTimeLeft;
 
     resultCountdown = setInterval(() => {
@@ -425,7 +425,7 @@ function endRound() {
             currentRound++;
             startNewRound();
         }
-    }, 5000);
+    }, 10000);
 }
 
 function showWinScreen() {
@@ -487,3 +487,4 @@ hardBtn.addEventListener("click", () => {
     numberOfToppings = 5;
     startGame();
 });
+
