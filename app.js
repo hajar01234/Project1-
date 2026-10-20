@@ -20,6 +20,8 @@ const loseScore = document.querySelector("#lose-score")
 const memorizeTimer = document.querySelector("#memorize-timer");
 const resultTimer = document.querySelector("#result-timer");
 const levelScreen = document.querySelector("#level-screen");
+const levelTitle = document.querySelector("#level-title");
+
 
 let timeLeft = 10;
 let countdown;
@@ -36,11 +38,26 @@ let numberOfToppings = 3;
 const playerToppings = ["", "", "", "", ""];
 
 function startGame() {
+    if (currentLevel==1){
+        levelTitle.textContent ="Easy Level";
+    } else if ( currentLevel==2){
+        levelTitle.textContent ="Medium Level";
+    }else{
+
+        levelTitle.textContent="Hard Level";
+    }
     timeLeft = 10;
     timer.textContent = timeLeft;
     score = 0;
     totalScore = 0;
     currentRound = 1;
+    roundFinished = false;
+
+    clearInterval(countdown);
+    clearInterval(memorizeCountdown);
+    clearInterval(resultCountdown);
+    clearTimeout(memorizeTimeout);
+    clearTimeout(resuleTimeout);
 
     winSreen.hidden = true;
     loseScore.hidden = false;
@@ -90,7 +107,7 @@ function startGame() {
 
         }, 1000);
 
-        }, 3000);
+    }, 3000);
 
 }
 
@@ -343,6 +360,7 @@ function startNewRound() {
 
 function endRound() {
     if (roundFinished) return;
+
     roundFinished = true;
 
     clearInterval(countdown);
@@ -395,26 +413,28 @@ function showLoseScreen() {
     winSreen.hidden = true;
 
     loseScore.textContent = totalScore;
+    loseScore.hidden = false;
     loseSreen.hidden = false;
 
 }
 
 function updateToppingPositions() {
 
-    const referencePositions = [
-        position1, position2, position3, position4, position5
-    ];
+    const referencePositions = [position1, position2, position3, position4, position5];
 
-    const playerPositions = [
-        playerPosition1, playerPosition2, playerPosition3,
-        playerPosition4, playerPosition5
-    ];
+    const playerPositions = [playerPosition1, playerPosition2, playerPosition3, playerPosition4, playerPosition5];
 
     for (let i = 0; i < 5; i++) {
+        if (i < numberOfToppings) {
+            referencePositions[i].style.display = "block";
+            playerPositions[i].style.display = "block";
+        } else {
+            referencePositions[i].style.display = "none";
+            playerPositions[i].style.display = "none";
+        }
 
-        referencePositions[i].hidden = i >= numberOfToppings;
-
-        playerPositions[i].hidden = i >= numberOfToppings;
+        // referencePositions[i].style.display = i >= numberOfToppings ? "" : none;
+        // playerPositions[i].style.display = i >= numberOfToppings ? "" : none;
     }
 }
 
