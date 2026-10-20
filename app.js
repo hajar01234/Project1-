@@ -369,7 +369,7 @@ function endRound() {
     referencePizza.hidden = false;
     playerPizza.hidden = false;
     memorizeTimer.parentElement.hidden = true;
-    let resultTimeLeft = 10;
+    let resultTimeLeft = 5;
     resultTimer.textContent = resultTimeLeft;
 
     resultCountdown = setInterval(() => {
