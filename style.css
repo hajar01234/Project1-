@@ -130,8 +130,15 @@ body {
   transform: scale(1.05);
 }
 
+
+#easy-btn .level-name,
+#medium-btn .level-name,
+#hard-btn .level-name {
+    transform: none;
+}
+
 #easy-btn .level-name {
-  transform: translateX(-75px);
+  transform: translateX(-150px);
 }
 
 #medium-btn .level-name {
@@ -139,8 +146,8 @@ body {
 }
 
 #hard-btn .level-name {
-  transform: translateX(75px);
-}
+  transform: translateX(150px);
+} 
 
 @media (max-width: 700px) {
   #level-screen h2 {
@@ -165,7 +172,9 @@ body {
     font-size: 14px;
   }
 }
-
+#game-screen.hidden {
+    display: none;
+}
 #game-screen {
   min-height: 100vh;
   background-image: url("./img/b2.jpeg");

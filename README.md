@@ -40,11 +40,15 @@ Players earn 1 point for choosing the correct topping in the wrong position and 
 * As a user, I want to move to the next level when available so that I can try a harder challenge.
 
 ## Screenshots
-
-
+![Home Page ](image.png)
+![Level Page](image-1.png)
+![original Pizza ](image-2.png)
 
 
 
 ## Future Enhancements
+* Adjust the design 
+* Add Mulitplayer 
+* Add 
 
 ## Credits
