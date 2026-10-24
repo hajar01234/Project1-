@@ -83,7 +83,7 @@ function startGame() {
     referencePizza.hidden = false;
     playerPizza.hidden = true;
     resultScreen.hidden = true;
-    let memorizeTimeLeft = 3;
+    let memorizeTimeLeft = 10;
     clearInterval(memorizeCountdown);
     memorizeTimer.textContent = memorizeTimeLeft;
 
